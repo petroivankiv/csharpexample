@@ -1,0 +1,3 @@
+/home/petro/Projects/CSBankAplication/obj/Debug/netcoreapp3.1/CSBankAplication.csprojAssemblyReference.cache
+/home/petro/Projects/CSBankAplication/obj/Debug/netcoreapp3.1/CSBankAplication.AssemblyInfoInputs.cache
+/home/petro/Projects/CSBankAplication/obj/Debug/netcoreapp3.1/CSBankAplication.AssemblyInfo.cs

@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{5BBA6089-E687-4C50-B66A-13DCE43A2528}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="CSBankAplication/Program.cs">
+    <Files>
+      <File FileName="BankLibrary/IAccount.cs" Line="10" Column="1" />
+      <File FileName="BankLibrary/AccountStateHandler.cs" Line="4" Column="72" />
+      <File FileName="BankLibrary/Account.cs" Line="85" Column="17" />
+      <File FileName="BankLibrary/Bank.cs" Line="60" Column="26" />
+      <File FileName="CSBankAplication/Program.cs" Line="133" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="CSBankAplication" expanded="True">
+            <Node name="BankLibrary" expanded="True" />
+            <Node name="CSBankAplication" expanded="True">
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.CSBankAplication PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

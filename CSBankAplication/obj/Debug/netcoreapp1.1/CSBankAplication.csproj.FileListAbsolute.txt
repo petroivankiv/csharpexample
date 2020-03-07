@@ -1,0 +1,13 @@
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/CSBankAplication.deps.json
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/CSBankAplication.runtimeconfig.json
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/CSBankAplication.runtimeconfig.dev.json
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/CSBankAplication.dll
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/CSBankAplication.pdb
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/BankLibrary.dll
+/home/petro/Projects/CSBankAplication/CSBankAplication/bin/Debug/netcoreapp1.1/BankLibrary.pdb
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.csprojAssemblyReference.cache
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.AssemblyInfoInputs.cache
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.AssemblyInfo.cs
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.csproj.CopyComplete
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.dll
+/home/petro/Projects/CSBankAplication/CSBankAplication/obj/Debug/netcoreapp1.1/CSBankAplication.pdb

@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.1": {
+      "CSBankAplication/1.0.0": {
+        "dependencies": {
+          "BankLibrary": "1.0.0"
+        },
+        "runtime": {
+          "CSBankAplication.dll": {}
+        }
+      },
+      "BankLibrary/1.0.0": {
+        "runtime": {
+          "BankLibrary.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CSBankAplication/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BankLibrary/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
