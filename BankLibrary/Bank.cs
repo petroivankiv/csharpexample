@@ -1,7 +1,7 @@
 ﻿using System;
 namespace BankLibrary
 {
-    // тип счета
+    // тип рахунку
     public enum AccountType
     {
         Ordinary,
@@ -18,11 +18,12 @@ namespace BankLibrary
         {
             Name = name;
         }
-        // метод создания счета
+
+        // метод створення рахунку
         public void Open(AccountType accountType, decimal sum,
             AccountStateHandler addSumHandler, AccountStateHandler withdrawSumHandler,
             AccountStateHandler calculationHandler, AccountStateHandler closeAccountHandler,
-            AccountStateHandler openAccountHandler)
+            AccountStateHandler printAccountsHandler, AccountStateHandler openAccountHandler)
         {
             T newAccount = null;
 
@@ -37,8 +38,8 @@ namespace BankLibrary
             }
 
             if (newAccount == null)
-                throw new Exception("Ошибка создания счета");
-            // добавляем новый счет в массив счетов      
+                throw new Exception("Помилка створення рахунку");
+            // додаємо новий рахунок у масив рахунків      
             if (accounts == null)
                 accounts = new T[] { newAccount };
             else
@@ -50,39 +51,42 @@ namespace BankLibrary
                 tempAccounts[tempAccounts.Length - 1] = newAccount;
                 accounts = tempAccounts;
             }
-            // установка обработчиков событий счета
+            // встановлення обробників подій рахунків
             newAccount.Added += addSumHandler;
             newAccount.Withdrawed += withdrawSumHandler;
             newAccount.Closed += closeAccountHandler;
             newAccount.Opened += openAccountHandler;
             newAccount.Calculated += calculationHandler;
+            newAccount.Printed += printAccountsHandler;
 
             newAccount.Open();
         }
 
-        //добавление средств на счет
+        // додавання грошей до рахунку
         public void Put(decimal sum, int id)
         {
             T account = FindAccount(id);
             if (account == null)
-                throw new Exception("Счет не найден");
+                throw new Exception("Рахунок не знайдено");
             account.Put(sum);
         }
-        // вывод средств
+
+        // зняття грошей
         public void Withdraw(decimal sum, int id)
         {
             T account = FindAccount(id);
             if (account == null)
-                throw new Exception("Счет не найден");
+                throw new Exception("Рахунок не знайдено");
             account.Withdraw(sum);
         }
-        // закрытие счета
+
+        // закриття рахунку
         public void Close(int id)
         {
             int index;
             T account = FindAccount(id, out index);
             if (account == null)
-                throw new Exception("Счет не найден");
+                throw new Exception("Рахунок не знайдено");
 
             account.Close();
 
@@ -90,7 +94,7 @@ namespace BankLibrary
                 accounts = null;
             else
             {
-                // уменьшаем массив счетов, удаляя из него закрытый счет
+                // зменшуємо масив рахунків, видаляючи з нього закритий рахунок
                 T[] tempAccounts = new T[accounts.Length - 1];
                 for (int i = 0, j = 0; i < accounts.Length; i++)
                 {
@@ -101,10 +105,27 @@ namespace BankLibrary
             }
         }
 
-        // начисление процентов по счетам
+        // виведення інформації
+        public void Print(out bool isEmpty)
+        {
+            if (accounts == null)
+            {
+                isEmpty = true;
+                return;
+            }
+
+            for (int i = 0; i < accounts.Length; i++)
+            {
+                accounts[i].Print();
+            }
+
+            isEmpty = false;
+        }
+
+        // зараховуємо відсотки для рахунків
         public void CalculatePercentage()
         {
-            if (accounts == null) // если массив не создан, выходим из метода
+            if (accounts == null)
                 return;
             for (int i = 0; i < accounts.Length; i++)
             {
@@ -113,7 +134,7 @@ namespace BankLibrary
             }
         }
 
-        // поиск счета по id
+        // пошук рахунку по id
         public T FindAccount(int id)
         {
             for (int i = 0; i < accounts.Length; i++)
@@ -123,7 +144,7 @@ namespace BankLibrary
             }
             return null;
         }
-        // перегруженная версия поиска счета
+        // перевантажена версія пошуку рахунку
         public T FindAccount(int id, out int index)
         {
             for (int i = 0; i < accounts.Length; i++)

@@ -9,7 +9,7 @@ namespace BankLibrary
 
         protected internal override void Open()
         {
-            base.OnOpened(new AccountEventArgs($"Открыт новый счет до востребования! Id счета: {this.Id}", this.Sum));
+            base.OnOpened(new AccountEventArgs($"Відкритий новий звичайний рахунок! Id рахунку: {this.Id}", this.Sum));
         }
     }
 }

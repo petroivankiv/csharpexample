@@ -3,19 +3,21 @@ namespace BankLibrary
 {
     public abstract class Account : IAccount
     {
-        //Событие, возникающее при выводе денег
+        // Подія зняття грошей
         protected internal event AccountStateHandler Withdrawed;
-        // Событие возникающее при добавление на счет
+        // Подія поповнення рахунку
         protected internal event AccountStateHandler Added;
-        // Событие возникающее при открытии счета
+        // Подія відкривання рахунку
         protected internal event AccountStateHandler Opened;
-        // Событие возникающее при закрытии счета
+        // Подія закриття рахунку
         protected internal event AccountStateHandler Closed;
-        // Событие возникающее при начислении процентов
+        // Подія нарахування відсотків 
         protected internal event AccountStateHandler Calculated;
+        // Подія виведення інформації про рахунок 
+        protected internal event AccountStateHandler Printed;
 
         static int counter = 0;
-        protected int _days = 0; // время с момента открытия счета
+        protected int _days = 0; // час з моменту відкриття рахунку
 
         public Account(decimal sum, int percentage)
         {
@@ -24,19 +26,19 @@ namespace BankLibrary
             Id = ++counter;
         }
 
-        // Текущая сумма на счету
+        // Поточна сума рахунку
         public decimal Sum { get; private set; }
-        // Процент начислений
+        // Відсоток нарахування
         public int Percentage { get; private set; }
-        // Уникальный идентификатор счета
+        // Ідентифікатор рахунку
         public int Id { get; private set; }
-        // вызов событий
+        // Виклик подій
         private void CallEvent(AccountEventArgs e, AccountStateHandler handler)
         {
             if (e != null)
                 handler?.Invoke(this, e);
         }
-        // вызов отдельных событий. Для каждого события определяется свой витуальный метод
+        // Для кожної події визначається свій віртуальний метод
         protected virtual void OnOpened(AccountEventArgs e)
         {
             CallEvent(e, Opened);
@@ -57,13 +59,17 @@ namespace BankLibrary
         {
             CallEvent(e, Calculated);
         }
+        protected virtual void OnPrinted(AccountEventArgs e)
+        {
+            CallEvent(e, Printed);
+        }
 
         public virtual void Put(decimal sum)
         {
             Sum += sum;
-            OnAdded(new AccountEventArgs("На счет поступило " + sum, sum));
+            OnAdded(new AccountEventArgs("На рахунок зараховано " + sum, sum));
         }
-        // метод снятия со счета, возвращает сколько снято со счета
+        // метод зняття з рахунку, повертає суму зняття з рахунку
         public virtual decimal Withdraw(decimal sum)
         {
             decimal result = 0;
@@ -71,35 +77,41 @@ namespace BankLibrary
             {
                 Sum -= sum;
                 result = sum;
-                OnWithdrawed(new AccountEventArgs($"Сумма {sum} снята со счета {Id}", sum));
+                OnWithdrawed(new AccountEventArgs($"Суму {sum} знято з рахунку {Id}", sum));
             }
             else
             {
-                OnWithdrawed(new AccountEventArgs($"Недостаточно денег на счете {Id}", 0));
+                OnWithdrawed(new AccountEventArgs($"Недостатньо грошей на рахунку {Id}", 0));
             }
             return result;
         }
-        // открытие счета
+        // відкриття рахунку
         protected internal virtual void Open()
         {
-            OnOpened(new AccountEventArgs($"Открыт новый счет! Id счета: {Id}", Sum));
+            OnOpened(new AccountEventArgs($"Відкритий новий рахунок! Id рахунку: {Id}", Sum));
         }
-        // закрытие счета
+        // закриття рахунку
         protected internal virtual void Close()
         {
-            OnClosed(new AccountEventArgs($"Счет {Id} закрыт.  Итоговая сумма: {Sum}", Sum));
+            OnClosed(new AccountEventArgs($"Рахунок {Id} закритий.  Баланс: {Sum}", Sum));
+        }
+
+        // виведення інформації про рахунок
+        protected internal virtual void Print()
+        {
+            OnPrinted(new AccountEventArgs($"Рахунок ІД: {Id}. Баланс: {Sum}. Відкрито днів тому: {_days}", Sum));
         }
 
         protected internal void IncrementDays()
         {
             _days++;
         }
-        // начисление процентов
+        // нарахування відсотків
         protected internal virtual void Calculate()
         {
             decimal increment = Sum * Percentage / 100;
             Sum = Sum + increment;
-            OnCalculated(new AccountEventArgs($"Начислены проценты в размере: {increment}", increment));
+            OnCalculated(new AccountEventArgs($"Нараховані відсотки в розмірі: {increment}", increment));
         }
     }
 }
